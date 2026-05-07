@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="description" content="ASO Korea 전담 담당자가 원격으로 직접 연결해 문제를 빠르게 해결해드립니다.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>원격지원 — ASO Korea</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="원격지원 — ASOKOREA">
+  <meta property="og:description" content="ASO Korea 전담 담당자가 원격으로 직접 연결해 문제를 빠르게 해결해드립니다.">
+  <meta property="og:url" content="https://asokorea.co.kr/remote.html">
+  <meta property="og:image" content="https://asokorea.co.kr/logo.png">
+  <meta property="og:site_name" content="ASOKOREA">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="원격지원 — ASOKOREA">
+  <meta name="twitter:description" content="ASO Korea 전담 담당자가 원격으로 직접 연결해 문제를 빠르게 해결해드립니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;--green:#0F6E56;--green-light:#E1F5EE;--gray-50:#FAFAF9;--gray-100:#F3F2EF;--gray-200:#E8E6E0;--gray-400:#999690;--gray-600:#5A5855;--gray-900:#1A1917;--font-ko:'Noto Sans KR',sans-serif;--font-en:'DM Sans',sans-serif;--radius:10px;--radius-lg:16px;}
+    html{scroll-behavior:smooth;}body{font-family:var(--font-ko);background:#fff;color:var(--gray-900);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--blue);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(24,95,165,0.08);}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}.nav-logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-en);font-size:15px;font-weight:500;}.nav-logo-text{font-size:16px;font-weight:500;color:var(--gray-900);}
+    .nav-menu{display:flex;gap:4px;list-style:none;}.nav-menu a{font-size:14px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:all 0.2s;padding:6px 12px;border-radius:6px;}.nav-menu a:hover{color:var(--blue);background:var(--blue-light);}.nav-menu a.active{color:var(--blue);font-weight:700;background:var(--blue-light);}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:var(--radius);font-family:var(--font-ko);font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none;}.btn-primary{background:var(--blue);color:#fff;}.btn-primary:hover{background:var(--blue-dark);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}.hamburger span{display:block;width:20px;height:1.5px;background:var(--gray-900);border-radius:2px;}
+    .mobile-menu{display:none;position:fixed;inset:0;background:#fff;z-index:200;flex-direction:column;padding:24px;}.mobile-menu.open{display:flex;}.mobile-menu-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--gray-200);margin-bottom:8px;}.mobile-close{font-size:24px;cursor:pointer;color:var(--gray-600);background:none;border:none;line-height:1;}.mobile-nav-list{list-style:none;flex:1;}.mobile-nav-list li a{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--gray-100);font-size:17px;color:var(--gray-900);text-decoration:none;}.mobile-nav-list li a.highlight{color:var(--blue);font-weight:500;}.mobile-cta-area{display:flex;flex-direction:column;gap:10px;padding-top:24px;border-top:1px solid var(--gray-200);}.mobile-cta-area .btn{justify-content:center;padding:14px;font-size:15px;}
+    .breadcrumb{padding:14px 40px;border-bottom:1px solid var(--gray-200);background:var(--gray-50);}.breadcrumb-inner{max-width:1200px;margin:0 auto;font-size:12px;color:var(--gray-400);}.breadcrumb-inner a{color:var(--gray-400);text-decoration:none;}.breadcrumb-inner span{margin:0 6px;}
+    .section-label{font-family:var(--font-en);font-size:11px;font-weight:500;letter-spacing:1.5px;color:var(--gray-400);text-transform:uppercase;margin-bottom:6px;}
+    footer{border-top:1px solid var(--gray-200);padding:28px 40px;}.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}.footer-copy{font-size:13px;color:var(--gray-400);}.footer-links{display:flex;gap:20px;}.footer-links a{font-size:13px;color:var(--gray-400);text-decoration:none;}.footer-links a:hover{color:var(--gray-900);}
+    .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}.fade-up.visible{opacity:1;transform:translateY(0);}
+    .page-wrap{max-width:900px;margin:0 auto;padding:64px 40px 80px;}
+    .page-hero-title{font-size:clamp(24px,3.5vw,36px);font-weight:700;letter-spacing:-0.5px;margin-bottom:10px;}
+    .page-hero-desc{font-size:15px;color:var(--gray-600);line-height:1.7;margin-bottom:40px;}
+    .setup-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+    .setup-box-title{font-size:16px;font-weight:700;margin-bottom:4px;}
+    .setup-box-desc{font-size:13px;color:var(--gray-600);line-height:1.6;}
+    .step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
+    .step-card{border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;}
+    .step-card-head{padding:16px;text-align:center;}
+    .step-num{font-family:var(--font-en);font-size:10px;color:rgba(255,255,255,0.7);letter-spacing:0.5px;margin-bottom:6px;}
+    .step-title{font-size:13px;font-weight:500;color:#fff;margin-bottom:4px;}
+    .step-body{padding:14px;background:#fff;}
+    .step-desc{font-size:12px;color:var(--gray-600);line-height:1.5;}
+    .cta-bar{background:var(--blue-light);border:1px solid #B5D4F4;border-radius:var(--radius-lg);padding:24px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+    .cta-bar-title{font-size:16px;font-weight:700;margin-bottom:4px;}
+    .cta-bar-desc{font-size:13px;color:var(--blue-dark);}
+    @media(max-width:768px){
+      nav{padding:0 20px;}.nav-menu,nav>.btn{display:none;}.hamburger{display:flex;}
+      .breadcrumb{padding:12px 20px;}
+      .page-wrap{padding:36px 20px 60px;}
+      .step-grid{grid-template-columns:1fr;}
+      .setup-box,.cta-bar{flex-direction:column;align-items:flex-start;}
+      footer{padding:24px 20px;}.footer-inner{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="ASO Korea" style="height:36px;width:auto;display:block;"><div style="display:flex;flex-direction:column;justify-content:center;line-height:1.2;"><span style="font-size:15px;font-weight:700;color:var(--gray-900);letter-spacing:-0.2px;">ASOKOREA</span><span style="font-size:9px;color:var(--gray-400);letter-spacing:0.3px;font-family:var(--font-en);">AI Software Optimization</span></div></a>
+  <ul class="nav-menu"><li><a href="ai-solution.html">AI 솔루션</a></li><li><a href="fashion-erp.html">패션 ERP</a></li><li><a href="about.html">회사소개</a></li><li><a href="remote.html" class="active">원격지원</a></li><li><a href="contact.html">도입문의</a></li></ul>
+  <a href="contact.html" class="btn btn-primary">도입문의</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header"><a class="nav-logo" href="index.html"><img src="logo.png" alt="ASO Korea" style="height:36px;width:auto;display:block;"><div style="display:flex;flex-direction:column;justify-content:center;line-height:1.2;"><span style="font-size:15px;font-weight:700;color:var(--gray-900);letter-spacing:-0.2px;">ASOKOREA</span><span style="font-size:9px;color:var(--gray-400);letter-spacing:0.3px;font-family:var(--font-en);">AI Software Optimization</span></div></a><button class="mobile-close" id="mobileClose">×</button></div>
+  <ul class="mobile-nav-list"><li><a href="ai-solution.html">AI 솔루션 <span>›</span></a></li><li><a href="fashion-erp.html">패션 ERP <span>›</span></a></li><li><a href="about.html">회사소개 <span>›</span></a></li><li><a href="remote.html" class="highlight">원격지원 <span>›</span></a></li><li><a href="contact.html">도입문의 <span>›</span></a></li></ul>
+  <div class="mobile-cta-area"><a href="contact.html" class="btn btn-primary">도입문의 →</a></div>
+</div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="index.html">Home</a><span>›</span>원격지원</div></div>
+
+<div class="page-wrap">
+  <div class="section-label" style="margin-bottom:10px;">REMOTE SUPPORT</div>
+  <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px;">
+    <div class="page-hero-title fade-up" style="margin-bottom:0;">원격지원</div>
+    <a href="https://367.co.kr/asokorea" target="_blank" class="fade-up" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:background 0.2s;box-shadow:0 2px 8px rgba(24,95,165,0.25);" onmouseover="this.style.background='#0C447C'" onmouseout="this.style.background='#185FA5'">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="2" width="14" height="10" rx="1.5" stroke="white" stroke-width="1.3"/><path d="M4 14h8M8 12v2" stroke="white" stroke-width="1.3" stroke-linecap="round"/><circle cx="8" cy="7" r="2" stroke="white" stroke-width="1.2"/><path d="M5 7c0-1.66 1.34-3 3-3s3 1.34 3 3" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+      원격 지원 바로 연결
+    </a>
+  </div>
+  <div class="page-hero-desc fade-up">ASO Korea 전담 담당자가 원격으로 직접 연결해 문제를 빠르게 해결해드립니다.<br>전화 문의 후 아래 절차에 따라 진행해주세요.</div>
+
+  <!-- 설치파일 -->
+  <div class="setup-box fade-up" style="margin-bottom:24px;">
+    <div><div class="section-label" style="margin-bottom:4px;">ERP SETUP</div><div class="setup-box-title">패션 ERP 설치파일</div><div class="setup-box-desc">최신 버전 설치파일을 다운로드하여 설치해주세요.<br>설치 중 문제가 생기면 아래 원격지원으로 연락해주세요.</div></div>
+    <a href="http://update.asokorea.com" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--gray-900);color:#fff;border-radius:var(--radius);font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;transition:background 0.2s;" onmouseover="this.style.background='#333'" onmouseout="this.style.background='var(--gray-900)'">📥 설치파일 다운로드</a>
+  </div>
+
+  <!-- ASO Insight 앱 -->
+  <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:20px;" class="fade-up">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;color:var(--gray-400);letter-spacing:0.5px;margin-bottom:4px;font-family:var(--font-en);">MOBILE APP</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:6px;">ASO Insight 앱</div>
+        <div style="font-size:13px;color:var(--gray-600);line-height:1.7;margin-bottom:16px;">매출조회 · 매장판매등록 · 재고실사를<br>스마트폰에서 바로 사용하세요.</div>
+        <a href="https://play.google.com/store/apps/details?id=com.asokorea.asoapp&pcampaignid=web_share" target="_blank"
+          style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;background:var(--blue);color:#fff;border-radius:var(--radius);font-size:13px;font-weight:500;text-decoration:none;"
+          onmouseover="this.style.background='var(--blue-dark)'" onmouseout="this.style.background='var(--blue)'">
+          ▶ Google Play에서 설치
+        </a>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div style="background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:16px;display:inline-block;box-shadow:var(--shadow);">
+          <img src="data:image/png;base64,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" alt="ASO Insight QR코드" style="width:120px;height:120px;display:block;">
+          <div style="font-size:11px;color:var(--gray-400);margin-top:8px;">QR 스캔으로 설치</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="step-grid">
+    <div class="step-card fade-up" style="transition-delay:0.05s;">
+      <div class="step-card-head" style="background:var(--blue);">
+        <div class="step-num">STEP 01</div>
+        <div class="step-title">전화 문의</div>
+      </div>
+      <div class="step-body">
+        <div class="step-desc"><a href="tel:07086708875" style="color:var(--blue);font-weight:500;">070-8670-8875</a>로 전화하여 원격지원 요청</div>
+      </div>
+    </div>
+    <div class="step-card fade-up" style="transition-delay:0.1s;">
+      <div class="step-card-head" style="background:var(--green);">
+        <div class="step-num">STEP 02</div>
+        <div class="step-title">원격 프로그램 실행</div>
+      </div>
+      <div class="step-body">
+        <div class="step-desc" style="margin-bottom:12px;">담당자 안내에 따라 원격 연결 프로그램을 실행</div>
+        <a href="https://367.co.kr/asokorea" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--blue);color:#fff;border-radius:var(--radius);font-size:12px;font-weight:500;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='var(--blue-dark)'" onmouseout="this.style.background='var(--blue)'">원격 프로그램 실행 →</a>
+      </div>
+    </div>
+    <div class="step-card fade-up" style="transition-delay:0.15s;">
+      <div class="step-card-head" style="background:#534AB7;">
+        <div class="step-num">STEP 03</div>
+        <div class="step-title">문제 해결</div>
+      </div>
+      <div class="step-body">
+        <div class="step-desc">담당자가 원격으로 직접 접속해 신속하게 지원</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-bar fade-up">
+    <div><div class="cta-bar-title">지금 바로 연락하세요</div><div class="cta-bar-desc">평일 오전 9시 ~ 오후 6시 운영 · 긴급 문의는 이메일로 접수해주세요.</div></div>
+    <a href="tel:07086708875" style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:var(--blue);color:#fff;border-radius:var(--radius);font-size:14px;font-weight:500;text-decoration:none;white-space:nowrap;">📞 070-8670-8875</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;width:100%;flex-wrap:wrap;gap:16px;margin-bottom:12px;">
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:14px;font-weight:500;color:var(--gray-900);">ASO Korea</div>
+        <div style="font-size:12px;color:var(--gray-400);">경기도 하남시 하남대로 947 A1215b호</div>
+        <div style="font-size:12px;color:var(--gray-400);">대표전화 <a href="tel:07086708875" style="color:var(--gray-400);text-decoration:none;">070-8670-8875</a>&nbsp;·&nbsp;<a href="mailto:bong@asokorea.com" style="color:var(--gray-400);text-decoration:none;">bong@asokorea.com</a></div>
+      </div>
+      <div class="footer-links"><a href="about.html">회사소개</a><a href="privacy.html">개인정보처리방침</a><a href="remote.html">원격지원</a><a href="contact.html">도입문의</a>      </div>
+    </div>
+    <div class="footer-copy">© 2026 ASO Korea. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden';});
+  document.getElementById('mobileClose').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow='';});
+  const obs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASOKOREA — AI Software Optimization</title>
+  <meta name="description" content="패션 ERP부터 AI 신상품 분석까지, 의류·패션 업계에 특화된 소프트웨어를 15년간 개발해왔습니다.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ASOKOREA — AI Software Optimization">
+  <meta property="og:description" content="패션 ERP부터 AI 신상품 분석까지, 의류·패션 업계에 특화된 소프트웨어를 15년간 개발해왔습니다.">
+  <meta property="og:url" content="https://asokorea.co.kr/">
+  <meta property="og:image" content="https://asokorea.co.kr/logo.png">
+  <meta property="og:site_name" content="ASOKOREA">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ASOKOREA — AI Software Optimization">
+  <meta name="twitter:description" content="패션 ERP부터 AI 신상품 분석까지, 의류·패션 업계에 특화된 소프트웨어를 15년간 개발해왔습니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;
+      --green:#0F6E56;--green-light:#E1F5EE;
+      --purple:#534AB7;--purple-light:#EEEDFE;
+      --amber:#BA7517;--amber-light:#FAEEDA;
+      --coral:#993C1D;--coral-light:#FAECE7;
+      --red:#E24B4A;--red-light:#FCEBEB;
+      --gray-50:#FAFAF9;--gray-100:#F3F2EF;--gray-200:#E8E6E0;
+      --gray-400:#999690;--gray-600:#5A5855;--gray-900:#1A1917;
+      --font-ko:'Noto Sans KR',sans-serif;--font-en:'DM Sans',sans-serif;
+      --radius:10px;--radius-lg:16px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-ko);background:#fff;color:var(--gray-900);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--blue);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(24,95,165,0.08);}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .nav-logo-text{display:flex;flex-direction:column;line-height:1.2;}
+    .nav-logo-name{font-size:15px;font-weight:700;color:var(--gray-900);letter-spacing:-0.2px;}
+    .nav-logo-sub{font-size:9px;color:var(--gray-400);letter-spacing:0.3px;font-family:var(--font-en);}
+    .nav-menu{display:flex;gap:4px;list-style:none;}
+    .nav-menu a{font-size:14px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:all 0.2s;padding:6px 12px;border-radius:6px;}
+    .nav-menu a:hover{color:var(--blue);background:var(--blue-light);}
+    .nav-menu a.active{color:var(--blue);font-weight:700;background:var(--blue-light);}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:var(--radius);font-family:var(--font-ko);font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none;}
+    .btn-primary{background:var(--blue);color:#fff;}
+    .btn-primary:hover{background:var(--blue-dark);}
+    .btn-outline{background:transparent;color:var(--gray-900);border:1px solid var(--gray-200);}
+    .btn-outline:hover{border-color:var(--gray-400);background:var(--gray-50);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+    .hamburger span{display:block;width:20px;height:1.5px;background:var(--gray-900);border-radius:2px;}
+    .mobile-menu{display:none;position:fixed;inset:0;background:#fff;z-index:200;flex-direction:column;padding:24px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--gray-200);margin-bottom:8px;}
+    .mobile-close{font-size:24px;cursor:pointer;color:var(--gray-600);background:none;border:none;line-height:1;}
+    .mobile-nav-list{list-style:none;flex:1;}
+    .mobile-nav-list li a{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--gray-100);font-size:17px;color:var(--gray-900);text-decoration:none;}
+    .mobile-nav-list li a.highlight{color:var(--blue);font-weight:500;}
+    .mobile-cta-area{display:flex;flex-direction:column;gap:10px;padding-top:24px;border-top:1px solid var(--gray-200);}
+    .mobile-cta-area .btn{justify-content:center;padding:14px;font-size:15px;}
+    /* HERO */
+    .hero{background:#fff;padding:72px 0 56px;border-bottom:1px solid var(--gray-200);}
+    .hero-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+    .eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:18px;}
+    .eyebrow-line{height:2px;width:28px;background:var(--blue);border-radius:2px;}
+    .eyebrow-text{font-size:11px;font-weight:500;color:var(--blue);letter-spacing:1.2px;font-family:var(--font-en);}
+    .hero-title{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.15;letter-spacing:-1.5px;color:var(--gray-900);margin-bottom:12px;}
+    .hero-title em{font-style:normal;color:var(--blue);}
+    .hero-desc{font-size:16px;color:var(--gray-600);line-height:1.7;margin-bottom:28px;max-width:560px;}
+    .hero-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+    .hero-btns{display:flex;gap:10px;}
+    .hero-btns .btn{font-size:15px;padding:12px 28px;}
+    .hero-btns .btn-primary{box-shadow:0 2px 10px rgba(24,95,165,0.25);}
+    .kpi-inline{display:flex;gap:36px;}
+    .kpi-item{text-align:right;}
+    .kpi-val{font-size:clamp(22px,2.5vw,30px);font-weight:700;font-family:var(--font-en);line-height:1;}
+    .kpi-label{font-size:11px;color:var(--gray-400);margin-top:3px;}
+    /* 3열 그리드 */
+    .grid3-wrap{border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);background:#fff;}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);max-width:1200px;margin:0 auto;}
+    .g-col{background:#fff;border-right:1px solid var(--gray-200);}
+    .g-col:last-child{border-right:none;}
+    .g-head{padding:16px 20px 12px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:baseline;}
+    .g-title{font-size:13px;font-weight:500;color:var(--gray-900);}
+    .g-sub{font-size:11px;color:var(--gray-400);}
+    .g-body{padding:18px 20px;}
+    .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+    .bar-label{font-size:12px;color:var(--gray-600);width:36px;}
+    .bar-track{flex:1;height:7px;background:var(--gray-100);border-radius:4px;overflow:hidden;}
+    .bar-fill{height:100%;border-radius:4px;background:var(--green);width:0;transition:width 1s ease;}
+    .bar-num{font-size:12px;color:var(--gray-900);font-weight:500;width:30px;text-align:right;}
+    .reorder{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:0 6px 6px 0;margin-bottom:8px;opacity:0;transform:translateX(-10px);transition:all 0.4s ease;}
+    .reorder.vis{opacity:1;transform:translateX(0);}
+    .reorder-name{font-size:13px;font-weight:500;}
+    .reorder-status{font-size:11px;margin-top:2px;}
+    .reorder-qty{font-size:14px;font-weight:700;color:var(--purple);}
+    /* 프로세스 */
+    .process{background:var(--gray-50);padding:36px 0;border-bottom:1px solid var(--gray-200);}
+    .process-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+    .proc-label{font-size:11px;color:var(--gray-400);letter-spacing:1.5px;margin-bottom:22px;font-family:var(--font-en);font-weight:500;}
+    .timeline{display:flex;align-items:flex-start;position:relative;}
+    .timeline::before{content:'';position:absolute;top:11px;left:11px;right:11px;height:1px;background:var(--gray-200);z-index:0;}
+    .tl-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;}
+    .tl-dot{width:22px;height:22px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;background:var(--gray-50);margin-bottom:10px;}
+    .tl-num{font-size:8px;font-weight:700;font-family:var(--font-en);}
+    .tl-name{font-size:13px;font-weight:500;margin-bottom:3px;}
+    .tl-desc{font-size:11px;color:var(--gray-400);}
+    /* ERP + APP */
+    .erp-app-wrap{border-bottom:1px solid var(--gray-200);background:#fff;}
+    .erp-app{display:grid;grid-template-columns:1fr 1fr;max-width:1200px;margin:0 auto;}
+    .erp-cell{padding:28px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fff;}
+    .erp-cell:first-child{border-right:1px solid var(--gray-200);}
+    .erp-label{font-size:11px;color:var(--gray-400);margin-bottom:4px;}
+    .erp-name{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
+    .erp-desc{font-size:13px;color:var(--gray-600);}
+    .chip-row{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+    .chip{background:var(--gray-100);border:1px solid var(--gray-200);border-radius:6px;padding:7px 16px;font-size:13px;color:var(--gray-600);}
+    .chip-ai{background:var(--blue-light);color:var(--blue-dark);border:none;font-weight:500;}
+    .gp-btn{background:var(--blue);color:#fff;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:500;text-decoration:none;white-space:nowrap;transition:background 0.2s;}
+    .gp-btn:hover{background:var(--blue-dark);}
+    /* FOOTER */
+    footer{border-top:1px solid var(--gray-200);padding:28px 0;}
+    .footer-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .footer-copy{font-size:13px;color:var(--gray-400);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:13px;color:var(--gray-400);text-decoration:none;transition:color 0.2s;}
+    .footer-links a:hover{color:var(--gray-900);}
+    /* 애니메이션 */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeDot{from{opacity:0;transform:scale(0.5);}to{opacity:1;transform:scale(1);}}
+    @keyframes slideRight{from{opacity:0;transform:translateX(-14px);}to{opacity:1;transform:translateX(0);}}
+    .eyebrow{animation:fadeUp 0.5s ease both;}
+    .hero-title{animation:fadeUp 0.6s ease 0.1s both;}
+    .hero-desc{animation:fadeUp 0.6s ease 0.2s both;}
+    .hero-bottom{animation:fadeUp 0.6s ease 0.3s both;}
+    .g-col{animation:fadeUp 0.5s ease both;}
+    .g-col:nth-child(1){animation-delay:0.15s;}
+    .g-col:nth-child(2){animation-delay:0.25s;}
+    .g-col:nth-child(3){animation-delay:0.35s;}
+    .tl-step{animation:slideRight 0.4s ease both;}
+    .tl-step:nth-child(1){animation-delay:0.2s;}
+    .tl-step:nth-child(2){animation-delay:0.32s;}
+    .tl-step:nth-child(3){animation-delay:0.44s;}
+    .tl-step:nth-child(4){animation-delay:0.56s;}
+    .tl-step:nth-child(5){animation-delay:0.68s;}
+    .tl-dot{animation:fadeDot 0.35s ease both;}
+    .tl-step:nth-child(1) .tl-dot{animation-delay:0.35s;}
+    .tl-step:nth-child(2) .tl-dot{animation-delay:0.47s;}
+    .tl-step:nth-child(3) .tl-dot{animation-delay:0.59s;}
+    .tl-step:nth-child(4) .tl-dot{animation-delay:0.71s;}
+    .tl-step:nth-child(5) .tl-dot{animation-delay:0.83s;}
+    .erp-cell{animation:fadeUp 0.5s ease both;}
+    .erp-cell:nth-child(1){animation-delay:0.1s;}
+    .erp-cell:nth-child(2){animation-delay:0.2s;}
+    /* 반응형 */
+    @media(max-width:768px){
+      nav{padding:0 20px;}
+      .nav-menu,nav>.btn{display:none;}
+      .hamburger{display:flex;}
+      .hero{padding:40px 0 32px;} .hero-inner{padding:0 20px;}
+      .hero-bottom{flex-direction:column;align-items:flex-start;gap:20px;}
+      .kpi-inline{gap:20px;}
+      .hero-btns .btn{flex:1;justify-content:center;}
+      .grid3{grid-template-columns:1fr;}
+      .g-col{border-right:none;border-bottom:1px solid var(--gray-200);}
+      .g-col:last-child{border-bottom:none;}
+      .process{padding:28px 0;} .process-inner{padding:0 20px;}
+      .timeline::before{display:none;}
+      .timeline{flex-direction:column;gap:14px;}
+      .tl-step{flex-direction:row;text-align:left;gap:12px;}
+      .tl-dot{flex-shrink:0;margin-bottom:0;}
+      .erp-app{grid-template-columns:1fr;} #i1,#i2,#i3{font-size:22px;}
+      .erp-cell:first-child{border-right:none;border-bottom:1px solid var(--gray-200);}
+      .erp-cell{padding:20px;}
+      footer{padding:24px 0;} .footer-inner{padding:0 20px;}
+      .footer-inner{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo.png" alt="ASO Korea" style="height:36px;width:auto;display:block;">
+    <div class="nav-logo-text"><span class="nav-logo-name">ASOKOREA</span><span class="nav-logo-sub">AI Software Optimization</span></div>
+  </a>
+  <ul class="nav-menu">
+    <li><a href="ai-solution.html">AI 솔루션</a></li>
+    <li><a href="fashion-erp.html">패션 ERP</a></li>
+    <li><a href="about.html">회사소개</a></li>
+    <li><a href="remote.html">원격지원</a></li>
+    <li><a href="contact.html">도입문의</a></li>
+  </ul>
+  <a href="contact.html" class="btn btn-primary">도입문의</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <a class="nav-logo" href="index.html">
+      <img src="logo.png" alt="ASO Korea" style="height:34px;width:auto;display:block;">
+      <div class="nav-logo-text"><span class="nav-logo-name">ASOKOREA</span><span class="nav-logo-sub">AI Software Optimization</span></div>
+    </a>
+    <button class="mobile-close" id="mobileClose">x</button>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="ai-solution.html">AI 솔루션 <span>›</span></a></li>
+    <li><a href="fashion-erp.html">패션 ERP <span>›</span></a></li>
+    <li><a href="about.html">회사소개 <span>›</span></a></li>
+    <li><a href="remote.html">원격지원 <span>›</span></a></li>
+    <li><a href="contact.html">도입문의 <span>›</span></a></li>
+  </ul>
+  <div class="mobile-cta-area"><a href="contact.html" class="btn btn-primary">도입문의 →</a></div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">DATA DRIVEN FASHION</span></div>
+    <h1 class="hero-title">패션 데이터로<br><em>생산 · 재고 · 판매를 최적화합니다</em></h1>
+    <p class="hero-desc">AI 기반 수요예측과 리오더 자동화로<br>재고 손실을 줄이고 판매 효율을 높입니다</p>
+    <div class="hero-bottom">
+      <div class="hero-btns">
+        <a href="contact.html" class="btn btn-primary">데모 요청 →</a>
+        <a href="contact.html" class="btn btn-outline">도입 상담</a>
+      </div>
+      <div class="kpi-inline">
+        <div class="kpi-item"><div class="kpi-val" style="color:var(--green);" id="k1">0개</div><div class="kpi-label">관리 중인 SKU</div></div>
+        <div class="kpi-item"><div class="kpi-val" style="color:var(--blue);" id="k2">0개</div><div class="kpi-label">주의·위험 상품 감지</div></div>
+        <div class="kpi-item"><div class="kpi-val" style="color:var(--purple);" id="k3">0%</div><div class="kpi-label">평균 원가회수율</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 설명 블록 -->
+<div style="border-bottom:1px solid var(--gray-200);background:var(--gray-50);">
+  <div style="max-width:1200px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:34px;height:34px;background:var(--blue-light);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12L5 8l3 2.5L12 4" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="3.5" r="1.5" fill="#185FA5"/></svg>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:500;color:var(--gray-900);margin-bottom:2px;">데이터 기반 의사결정</div>
+        <div style="font-size:13px;color:var(--gray-600);">AI가 상품별 판매를 예측하고, 매장별 최적 배분과 리오더 시점을 자동으로 제안합니다</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--gray-400);white-space:nowrap;">ASO 패션 ERP 즉시 연동</div>
+  </div>
+</div>
+
+<div class="grid3-wrap"><div class="grid3">
+  <div class="g-col">
+    <div class="g-head"><span class="g-title">SKU별 생산량 vs 실판매</span><span class="g-sub">FW25 시즌</span></div>
+    <div class="g-body">
+      <svg viewBox="0 0 260 90" width="100%" height="90">
+        <line x1="36" y1="5"  x2="260" y2="5"  stroke="#E8E6E0" stroke-width="0.5"/>
+        <line x1="36" y1="30" x2="260" y2="30" stroke="#E8E6E0" stroke-width="0.5"/>
+        <line x1="36" y1="55" x2="260" y2="55" stroke="#E8E6E0" stroke-width="0.5"/>
+        <line x1="36" y1="80" x2="260" y2="80" stroke="#E8E6E0" stroke-width="0.5"/>
+        <text x="0" y="9"  font-size="8" fill="#999690" font-family="DM Sans,sans-serif">3K</text>
+        <text x="0" y="34" font-size="8" fill="#999690" font-family="DM Sans,sans-serif">2K</text>
+        <text x="0" y="59" font-size="8" fill="#999690" font-family="DM Sans,sans-serif">1K</text>
+        <text x="4" y="84" font-size="8" fill="#999690" font-family="DM Sans,sans-serif">0</text>
+        <rect x="44"  y="32" width="14" height="48" rx="2" fill="#185FA5" opacity="0.22"><animate attributeName="height" from="0" to="48" dur="0.9s" begin="0.2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="32" dur="0.9s" begin="0.2s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="60"  y="37" width="14" height="43" rx="2" fill="#185FA5"><animate attributeName="height" from="0" to="43" dur="0.9s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="37" dur="0.9s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="100" y="44" width="14" height="36" rx="2" fill="#185FA5" opacity="0.22"><animate attributeName="height" from="0" to="36" dur="0.9s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="44" dur="0.9s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="116" y="49" width="14" height="31" rx="2" fill="#185FA5"><animate attributeName="height" from="0" to="31" dur="0.9s" begin="0.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="49" dur="0.9s" begin="0.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="156" y="14" width="14" height="66" rx="2" fill="#185FA5" opacity="0.22"><animate attributeName="height" from="0" to="66" dur="0.9s" begin="0.6s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="14" dur="0.9s" begin="0.6s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="172" y="19" width="14" height="61" rx="2" fill="#185FA5"><animate attributeName="height" from="0" to="61" dur="0.9s" begin="0.7s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="19" dur="0.9s" begin="0.7s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="212" y="58" width="14" height="22" rx="2" fill="#185FA5" opacity="0.22"><animate attributeName="height" from="0" to="22" dur="0.9s" begin="0.8s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="58" dur="0.9s" begin="0.8s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <rect x="228" y="62" width="14" height="18" rx="2" fill="#185FA5"><animate attributeName="height" from="0" to="18" dur="0.9s" begin="0.9s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/><animate attributeName="y" from="80" to="62" dur="0.9s" begin="0.9s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1"/></rect>
+        <text x="46"  y="88" font-size="8" fill="#999690">KN-014</text>
+        <text x="102" y="88" font-size="8" fill="#999690">OT-001</text>
+        <text x="158" y="88" font-size="8" fill="#999690">PT-007</text>
+        <text x="214" y="88" font-size="8" fill="#999690">BL-022</text>
+      </svg>
+      <div style="display:flex;gap:12px;margin-top:6px;align-items:center;">
+        <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#999690;"><div style="width:10px;height:10px;border-radius:2px;background:#185FA5;opacity:0.22;"></div>생산량</div>
+        <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#999690;"><div style="width:10px;height:10px;border-radius:2px;background:#185FA5;"></div>실판매</div>
+        <div style="margin-left:auto;font-size:11px;color:#0F6E56;font-weight:500;">평균 적중률 94.2%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g-col">
+    <div class="g-head"><span class="g-title">매장별 초도 배분</span><span class="g-sub">FW25-KN-014 기준</span></div>
+    <div class="g-body">
+      <div class="bar-row"><div class="bar-label">강남점</div><div class="bar-track"><div class="bar-fill" id="b1"></div></div><div class="bar-num">320</div></div>
+      <div class="bar-row"><div class="bar-label">홍대점</div><div class="bar-track"><div class="bar-fill" id="b2"></div></div><div class="bar-num">240</div></div>
+      <div class="bar-row"><div class="bar-label">판교점</div><div class="bar-track"><div class="bar-fill" id="b3"></div></div><div class="bar-num">190</div></div>
+      <div class="bar-row"><div class="bar-label">부산점</div><div class="bar-track"><div class="bar-fill" id="b4"></div></div><div class="bar-num">140</div></div>
+    </div>
+  </div>
+
+  <div class="g-col">
+    <div class="g-head"><span class="g-title">리오더 우선순위</span><span class="g-sub">전 SKU 자동 분석</span></div>
+    <div class="g-body">
+      <div class="reorder" id="r1" style="border-left:3px solid #E24B4A;background:#FCEBEB;"><div><div class="reorder-name" style="color:#501313;">FW25-KN-014</div><div class="reorder-status" style="color:#A32D2D;">긴급 · 5일 후 결품</div></div><div class="reorder-qty">+1,800</div></div>
+      <div class="reorder" id="r2" style="border-left:3px solid #BA7517;background:#FAEEDA;"><div><div class="reorder-name" style="color:#412402;">FW25-OT-001</div><div class="reorder-status" style="color:#854F0B;">주의 · 14일 후 결품</div></div><div class="reorder-qty">+800</div></div>
+      <div class="reorder" id="r3" style="border-left:3px solid #97C459;background:#EAF3DE;"><div><div class="reorder-name" style="color:#173404;">FW25-PT-007</div><div class="reorder-status" style="color:#3B6D11;">여유 · 28일 후 결품</div></div><div class="reorder-qty">+400</div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- 실제 운영 데이터 -->
+<div style="border-bottom:1px solid var(--gray-200);">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);">
+    <div style="padding:28px 24px;text-align:center;border-right:1px solid var(--gray-200);">
+      <div style="font-size:11px;font-weight:500;background:var(--blue-light);color:var(--blue-dark);padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:12px;">전체 상품</div>
+      <div style="font-size:30px;font-weight:500;font-family:var(--font-en);color:var(--blue);margin-bottom:4px;" id="i1">0</div>
+      <div style="font-size:12px;color:var(--gray-600);">현재 관리 중인 SKU</div>
+    </div>
+    <div style="padding:28px 24px;text-align:center;border-right:1px solid var(--gray-200);">
+      <div style="font-size:11px;font-weight:500;background:var(--amber-light);color:#7A4A10;padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:12px;">주의 상품</div>
+      <div style="font-size:30px;font-weight:500;font-family:var(--font-en);color:var(--amber);margin-bottom:4px;" id="i2">0</div>
+      <div style="font-size:12px;color:var(--gray-600);">AI 주의 감지 상품</div>
+    </div>
+    <div style="padding:28px 24px;text-align:center;border-right:1px solid var(--gray-200);">
+      <div style="font-size:11px;font-weight:500;background:var(--red-light);color:#791F1F;padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:12px;">위험 상품</div>
+      <div style="font-size:30px;font-weight:500;font-family:var(--font-en);color:var(--red);margin-bottom:4px;" id="i3">0</div>
+      <div style="font-size:12px;color:var(--gray-600);">즉시 조치 필요 상품</div>
+    </div>
+    <div style="padding:28px 24px;text-align:center;">
+      <div style="font-size:11px;font-weight:500;background:var(--purple-light);color:#26215C;padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:12px;">원가회수율</div>
+      <div style="font-size:30px;font-weight:500;font-family:var(--font-en);color:var(--purple);margin-bottom:4px;" id="i4">0%</div>
+      <div style="font-size:12px;color:var(--gray-600);">평균 원가회수율</div>
+    </div>
+  </div>
+</div>
+
+<section class="process">
+  <div class="process-inner">
+    <div class="proc-label">AI PROCESS</div>
+    <div class="timeline">
+      <div class="tl-step"><div class="tl-dot" style="border-color:#185FA5;"><span class="tl-num" style="color:#185FA5;">01</span></div><div class="tl-name" style="color:#185FA5;">생산량 예측</div><div class="tl-desc">SKU별 자동 산출</div></div>
+      <div class="tl-step"><div class="tl-dot" style="border-color:#0F6E56;"><span class="tl-num" style="color:#0F6E56;">02</span></div><div class="tl-name" style="color:#0F6E56;">매장별 배분</div><div class="tl-desc">데이터 기반 최적화</div></div>
+      <div class="tl-step"><div class="tl-dot" style="border-color:#534AB7;"><span class="tl-num" style="color:#534AB7;">03</span></div><div class="tl-name" style="color:#534AB7;">리오더 제안</div><div class="tl-desc">최적 시점 자동</div></div>
+      <div class="tl-step"><div class="tl-dot" style="border-color:#993C1D;"><span class="tl-num" style="color:#993C1D;">04</span></div><div class="tl-name" style="color:#993C1D;">재고 이동</div><div class="tl-desc">판매율 증가</div></div>
+      <div class="tl-step"><div class="tl-dot" style="border-color:#BA7517;"><span class="tl-num" style="color:#BA7517;">05</span></div><div class="tl-name" style="color:#BA7517;">AI 실착 이미지</div><div class="tl-desc">코디 자동 생성</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="erp-app-wrap"><div class="erp-app">
+  <div class="erp-cell">
+    <div><div class="erp-label">기존 자산 연동</div><div class="erp-name">패션 ERP</div><div class="erp-desc">15년 축적 데이터를 그대로 활용해 AI 모델이 학습합니다</div></div>
+    <div class="chip-row"><div class="chip">패션 ERP</div><span style="color:#999690;">→</span><div class="chip chip-ai">AI 분석</div></div>
+  </div>
+  <div class="erp-cell">
+    <div><div class="erp-label">모바일 앱</div><div class="erp-name">ASO Insight</div><div class="erp-desc">매출조회 · 매장판매등록 · 재고실사</div></div>
+    <a href="https://play.google.com/store/apps/details?id=com.asokorea.asoapp&pcampaignid=web_share" target="_blank" class="gp-btn">Google Play →</a>
+  </div>
+</div></div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 ASO Korea. All rights reserved.</div>
+    <div class="footer-links"><a href="about.html">회사소개</a><a href="privacy.html">개인정보처리방침</a><a href="remote.html">원격지원</a><a href="contact.html">도입문의</a></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden';});
+  document.getElementById('mobileClose').addEventListener('click',function(){document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow='';});
+  function countUp(id,target,prefix,suffix,decimal){
+    var el=document.getElementById(id),s=0,step=target/(900/16);
+    var t=setInterval(function(){s=Math.min(s+step,target);el.textContent=prefix+(decimal?s.toFixed(1):Math.round(s))+suffix;if(s>=target)clearInterval(t);},16);
+  }
+  setTimeout(function(){countUp('k1',885,'','개',false);},400);
+  setTimeout(function(){countUp('k2',126,'','개',false);},600);
+  setTimeout(function(){countUp('k3',212.6,'','%',true);},800);
+
+  function countUp2(id,target,suf,dec){
+    var el=document.getElementById(id);
+    if(!el)return;
+    var s=0,step=target/(800/16);
+    var t=setInterval(function(){s=Math.min(s+step,target);el.textContent=(dec?s.toFixed(1):Math.round(s))+suf;if(s>=target)clearInterval(t);},16);
+  }
+  setTimeout(function(){countUp2('i1',885,'개',false);},400);
+  setTimeout(function(){countUp2('i2',68,'개',false);},600);
+  setTimeout(function(){countUp2('i3',58,'개',false);},800);
+  setTimeout(function(){countUp2('i4',212.6,'%',true);},1000);
+  setTimeout(function(){
+    [{id:'b1',w:'88%'},{id:'b2',w:'65%'},{id:'b3',w:'51%'},{id:'b4',w:'38%'}]
+    .forEach(function(b,i){setTimeout(function(){document.getElementById(b.id).style.width=b.w;},i*180);});
+  },300);
+  setTimeout(function(){
+    ['r1','r2','r3'].forEach(function(id,i){setTimeout(function(){document.getElementById(id).classList.add('vis');},i*220);});
+  },400);
+</script>
+</body>
+</html>

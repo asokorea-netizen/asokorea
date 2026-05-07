@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="description" content="신상품 생산량 예측, 매장별 초도 배분, 리오더 제안, 재고 이동 분석까지. AI가 패션 신상품 라이프사이클 전 과정을 분석합니다.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 솔루션 — ASO Korea</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI 신상품 분석 솔루션 — 생산·재고·판매 최적화 | ASOKOREA">
+  <meta property="og:description" content="신상품 생산량 예측, 매장별 초도 배분, 리오더 제안, 재고 이동 분석까지. AI가 패션 신상품 라이프사이클 전 과정을 분석합니다.">
+  <meta property="og:url" content="https://asokorea.co.kr/ai-solution.html">
+  <meta property="og:image" content="https://asokorea.co.kr/logo.png">
+  <meta property="og:site_name" content="ASOKOREA">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI 솔루션 — ASOKOREA">
+  <meta name="twitter:description" content="신상품 생산량 예측, 매장별 초도 배분, 리오더 제안, 재고 이동 분석까지. AI가 패션 신상품 라이프사이클 전 과정을 분석합니다.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--blue:#185FA5;--blue-light:#E6F1FB;--blue-dark:#0C447C;--green:#0F6E56;--green-light:#E1F5EE;--purple:#534AB7;--purple-light:#EEEDFE;--amber:#BA7517;--amber-light:#FAEEDA;--red:#E24B4A;--red-light:#FCEBEB;--gray-50:#FAFAF9;--gray-100:#F3F2EF;--gray-200:#E8E6E0;--gray-400:#999690;--gray-600:#5A5855;--gray-900:#1A1917;--font-ko:'Noto Sans KR',sans-serif;--font-en:'DM Sans',sans-serif;--radius:10px;--radius-lg:16px;--shadow:0 1px 3px rgba(0,0,0,0.06);}
+    html{scroll-behavior:smooth;}body{font-family:var(--font-ko);background:#fff;color:var(--gray-900);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid var(--blue);padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(24,95,165,0.08);}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}.nav-logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-en);font-size:15px;font-weight:500;}.nav-logo-text{font-size:16px;font-weight:500;color:var(--gray-900);}
+    .nav-menu{display:flex;gap:4px;list-style:none;}.nav-menu a{font-size:14px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:all 0.2s;padding:6px 12px;border-radius:6px;}.nav-menu a:hover{color:var(--blue);background:var(--blue-light);}.nav-menu a.active{color:var(--blue);font-weight:700;background:var(--blue-light);}
+    .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:var(--radius);font-family:var(--font-ko);font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none;}.btn-primary{background:var(--blue);color:#fff;}.btn-primary:hover{background:var(--blue-dark);}.btn-outline{background:transparent;color:var(--gray-900);border:1px solid var(--gray-200);}.btn-outline:hover{border-color:var(--gray-400);background:var(--gray-50);}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}.hamburger span{display:block;width:20px;height:1.5px;background:var(--gray-900);border-radius:2px;}
+    .mobile-menu{display:none;position:fixed;inset:0;background:#fff;z-index:200;flex-direction:column;padding:24px;}.mobile-menu.open{display:flex;}.mobile-menu-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--gray-200);margin-bottom:8px;}.mobile-close{font-size:24px;cursor:pointer;color:var(--gray-600);background:none;border:none;line-height:1;}.mobile-nav-list{list-style:none;flex:1;}.mobile-nav-list li a{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--gray-100);font-size:17px;color:var(--gray-900);text-decoration:none;}.mobile-nav-list li a.highlight{color:var(--blue);font-weight:500;}.mobile-cta-area{display:flex;flex-direction:column;gap:10px;padding-top:24px;border-top:1px solid var(--gray-200);}.mobile-cta-area .btn{justify-content:center;padding:14px;font-size:15px;}
+    .breadcrumb{padding:14px 0;border-bottom:1px solid var(--gray-200);background:var(--gray-50);}.breadcrumb-inner{max-width:1200px;margin:0 auto;padding:0 40px;}.breadcrumb-inner{max-width:1200px;margin:0 auto;font-size:12px;color:var(--gray-400);}.breadcrumb-inner a{color:var(--gray-400);text-decoration:none;}.breadcrumb-inner span{margin:0 6px;}
+    .container{max-width:1200px;margin:0 auto;}
+    .section-label{font-family:var(--font-en);font-size:11px;font-weight:500;letter-spacing:1.5px;color:var(--gray-400);text-transform:uppercase;margin-bottom:6px;}
+    footer{border-top:1px solid var(--gray-200);padding:28px 0;}.footer-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}.footer-copy{font-size:13px;color:var(--gray-400);}.footer-links{display:flex;gap:20px;}.footer-links a{font-size:13px;color:var(--gray-400);text-decoration:none;transition:color 0.2s;}.footer-links a:hover{color:var(--gray-900);}
+    .fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}.fade-up.visible{opacity:1;transform:translateY(0);}
+    .bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;}.bar-row:last-child{margin-bottom:0;}.bar-label{font-size:11px;color:var(--gray-600);width:44px;flex-shrink:0;}.bar-track{flex:1;height:10px;background:var(--gray-200);border-radius:5px;overflow:hidden;}.bar-fill{height:100%;border-radius:5px;background:var(--green);}.bar-num{font-size:11px;font-weight:500;width:32px;text-align:right;}
+
+    /* PAGE HERO */
+    .page-hero-wrap{border-bottom:1px solid var(--gray-200);}.page-hero{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;}
+    .page-hero-left{padding:56px 40px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--gray-200);}
+    .page-hero-badge{display:inline-block;background:var(--blue-light);color:var(--blue-dark);padding:4px 14px;border-radius:999px;font-size:12px;font-weight:500;margin-bottom:14px;}
+    .page-hero-left h1{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-0.5px;line-height:1.25;margin-bottom:10px;}
+    .page-hero-left p{font-size:14px;color:var(--gray-600);line-height:1.7;}
+    .page-hero-right{background:var(--gray-50);padding:20px;display:flex;flex-direction:column;gap:8px;}
+
+    /* PROCESS BAR */
+    .process-bar{background:var(--gray-50);border-bottom:1px solid var(--gray-200);padding:20px 0;}.process-bar-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
+    .process-bar-inner{max-width:1200px;margin:0 auto;}
+    .process-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;margin-top:10px;}
+    .ps-item{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 16px;text-align:center;}
+    .ps-num{font-family:var(--font-en);font-size:10px;color:var(--gray-400);margin-bottom:2px;}
+    .ps-title{font-size:13px;font-weight:500;}
+    .ps-arrow{color:var(--gray-400);font-size:16px;}
+
+    /* FEATURE SECTIONS */
+    .feature-section{padding:64px 0;border-bottom:1px solid var(--gray-200);}
+    .feature-section:nth-child(odd){background:var(--gray-50);}
+    .feature-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+    .feature-inner.reverse{direction:rtl;}.feature-inner.reverse>*{direction:ltr;}
+    .feature-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:500;letter-spacing:0.3px;margin-bottom:12px;}
+    .feature-title{font-size:clamp(20px,2.5vw,28px);font-weight:700;letter-spacing:-0.3px;line-height:1.3;margin-bottom:10px;}
+    .feature-desc{font-size:14px;color:var(--gray-600);line-height:1.75;margin-bottom:18px;}
+    .feature-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .feature-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--gray-600);}
+    .fl-check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;font-weight:700;}
+
+    /* DATA PANELS */
+    .data-panel{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:18px;}
+    .data-panel-label{font-size:11px;color:var(--gray-400);margin-bottom:12px;font-family:var(--font-en);letter-spacing:0.3px;}
+    .sku-row{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+    .sku-row:last-child{margin-bottom:0;}
+    .sku-name{font-size:12px;font-weight:500;margin-bottom:2px;}
+    .sku-sub{font-size:10px;color:var(--gray-400);}
+    .sku-val{font-size:16px;font-weight:500;}
+    .reorder-row{border-radius:0 8px 8px 0;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-left:3px solid;}
+    .reorder-row:last-child{margin-bottom:0;}
+    .reorder-name{font-size:12px;font-weight:500;margin-bottom:2px;}
+    .reorder-status{font-size:10px;}
+    .reorder-qty{font-size:14px;font-weight:500;color:var(--purple);}
+
+    /* CTA */
+    .cta-section{padding:64px 0;text-align:center;background:var(--gray-50);border-top:1px solid var(--gray-200);}.cta-inner{max-width:800px;margin:0 auto;padding:0 40px;}
+    .cta-title{font-size:clamp(20px,2.5vw,28px);font-weight:700;margin-bottom:8px;letter-spacing:-0.3px;}
+    .cta-desc{font-size:14px;color:var(--gray-600);line-height:1.7;margin-bottom:24px;}
+    .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .cta-actions .btn{font-size:15px;padding:12px 28px;}
+
+    @media(max-width:768px){
+      nav{padding:0 20px;}.nav-menu,nav>.btn{display:none;}.hamburger{display:flex;}
+      .breadcrumb{padding:12px 0;}.breadcrumb-inner{padding:0 20px;}
+      .page-hero{grid-template-columns:1fr;}.page-hero-left{padding:36px 20px;border-right:none;border-bottom:1px solid var(--gray-200);}
+      .process-bar{padding:16px 20px;}.process-steps{grid-template-columns:1fr;}.ps-arrow{display:none;}
+      .feature-section{padding:40px 0;}.feature-inner{grid-template-columns:1fr;gap:28px;}.feature-inner.reverse{direction:ltr;}
+      .cta-section{padding:48px 0;}.cta-actions .btn{width:100%;justify-content:center;}.cta-inner{padding:0 20px;}
+      footer{padding:24px 0;}.footer-inner{padding:0 20px;flex-direction:column;align-items:flex-start;gap:12px;}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html"><img src="logo.png" alt="ASO Korea" style="height:36px;width:auto;display:block;"><div style="display:flex;flex-direction:column;justify-content:center;line-height:1.2;"><span style="font-size:15px;font-weight:700;color:var(--gray-900);letter-spacing:-0.2px;">ASOKOREA</span><span style="font-size:9px;color:var(--gray-400);letter-spacing:0.3px;font-family:var(--font-en);">AI Software Optimization</span></div></a>
+  <ul class="nav-menu"><li><a href="ai-solution.html" class="active">AI 솔루션</a></li><li><a href="fashion-erp.html">패션 ERP</a></li><li><a href="about.html">회사소개</a></li><li><a href="remote.html">원격지원</a></li><li><a href="contact.html">도입문의</a></li></ul>
+  <a href="contact.html" class="btn btn-primary">도입문의</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header"><a class="nav-logo" href="index.html"><img src="logo.png" alt="ASO Korea" style="height:36px;width:auto;display:block;"><div style="display:flex;flex-direction:column;justify-content:center;line-height:1.2;"><span style="font-size:15px;font-weight:700;color:var(--gray-900);letter-spacing:-0.2px;">ASOKOREA</span><span style="font-size:9px;color:var(--gray-400);letter-spacing:0.3px;font-family:var(--font-en);">AI Software Optimization</span></div></a><button class="mobile-close" id="mobileClose">×</button></div>
+  <ul class="mobile-nav-list"><li><a href="ai-solution.html" class="highlight">AI 솔루션 <span>›</span></a></li><li><a href="fashion-erp.html">패션 ERP <span>›</span></a></li><li><a href="about.html">회사소개 <span>›</span></a></li><li><a href="remote.html">원격지원 <span>›</span></a></li><li><a href="contact.html">도입문의 <span>›</span></a></li></ul>
+  <div class="mobile-cta-area"><a href="contact.html" class="btn btn-primary">도입문의 →</a></div>
+</div>
+<div class="breadcrumb"><div class="breadcrumb-inner"><a href="index.html">Home</a><span>›</span>AI 솔루션</div></div>
+
+<!-- PAGE HERO -->
+<div class="page-hero-wrap"><div class="page-hero">
+  <div class="page-hero-left fade-up">
+    <div class="page-hero-badge">AI POWERED</div>
+    <h1>신상품 생산·판매·리오더 분석</h1>
+    <p>기획 단계부터 시즌 마감까지, 신상품 라이프사이클 전 과정을 데이터로 의사결정합니다.</p>
+  </div>
+  <div class="page-hero-right"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;"><div style="background:rgba(93,202,165,0.12);border:1px solid rgba(93,202,165,0.3);border-radius:8px;padding:8px 14px;text-align:center;"><div style="font-size:9px;color:#5DCAA5;margin-bottom:2px;">관리 SKU</div><div style="font-size:18px;font-weight:700;color:#5DCAA5;font-family:'DM Sans',sans-serif;">885개</div></div><div style="background:rgba(83,74,183,0.12);border:1px solid rgba(83,74,183,0.3);border-radius:8px;padding:8px 14px;text-align:center;"><div style="font-size:9px;color:#534AB7;margin-bottom:2px;">원가회수율</div><div style="font-size:18px;font-weight:700;color:#534AB7;font-family:'DM Sans',sans-serif;">212.6%</div></div></div>
+    <!-- 미니 라인 차트 -->
+    <div style="background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px;">
+      <div style="font-size:11px;font-weight:500;margin-bottom:8px;">AI 예측 vs 실제 판매</div>
+      <svg viewBox="0 0 300 60" width="100%" height="60">
+        <line x1="0" y1="15" x2="300" y2="15" stroke="#E8E6E0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <line x1="0" y1="35" x2="300" y2="35" stroke="#E8E6E0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <polyline points="0,52 50,44 100,38 150,30 200,22 250,16 300,10" fill="none" stroke="#185FA5" stroke-width="1.2" stroke-dasharray="4,3" opacity="0.5"/>
+        <polyline points="0,54 50,45 100,40 150,32 200,25 250,20" fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="0,54 50,45 100,40 150,32 200,25 250,20 250,60 0,60" fill="#185FA5" opacity="0.05"/>
+        <circle cx="250" cy="20" r="3.5" fill="#185FA5"/>
+      </svg>
+      <div style="display:flex;gap:12px;margin-top:4px;">
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--gray-600);"><div style="width:14px;height:2px;background:var(--blue);border-radius:1px;"></div>실제</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--gray-600);"><div style="width:14px;height:2px;background:var(--blue);border-radius:1px;opacity:0.5;"></div>예측</div>
+      </div>
+    </div>
+    <!-- 3개 지표 -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+      <div style="background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px;text-align:center;">
+        <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px;">적중률</div>
+        <div style="font-size:18px;font-weight:500;color:var(--green);">94.2%</div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px;text-align:center;">
+        <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px;">손실 절감</div>
+        <div style="font-size:18px;font-weight:500;color:var(--blue);">-37%</div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px;text-align:center;">
+        <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px;">모니터링</div>
+        <div style="font-size:14px;font-weight:500;color:var(--purple);">전 SKU</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- PROCESS BAR -->
+<div class="process-bar">
+  <div class="process-bar-inner">
+    <div class="section-label">PROCESS</div>
+    <div class="process-steps">
+      <div class="ps-item"><div class="ps-num">STEP 01</div><div class="ps-title" style="color:var(--blue);">생산량 예측</div></div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-item"><div class="ps-num">STEP 02</div><div class="ps-title" style="color:var(--green);">매장별 배분</div></div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-item"><div class="ps-num">STEP 03</div><div class="ps-title" style="color:var(--purple);">리오더 제안</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE 01 -->
+<section class="feature-section" id="section-01">
+  <div class="feature-inner">
+    <div class="fade-up">
+      <div class="feature-badge" style="background:var(--blue-light);color:var(--blue-dark);">01 · 생산량 예측</div>
+      <div class="feature-title">데이터로 결정하는<br>적정 초도 생산량</div>
+      <div class="feature-desc">과거 동일 시즌, 유사 디자인, 가격대, 판매 채널 데이터를 종합 분석해 SKU별 적정 생산량을 자동 산출합니다.</div>
+      <ul class="feature-list">
+        <li><div class="fl-check" style="background:var(--blue-light);color:var(--blue);">✓</div>SKU·컬러·사이즈별 세분화 예측</li>
+        <li><div class="fl-check" style="background:var(--blue-light);color:var(--blue);">✓</div>시즌·트렌드 가중치 자동 반영</li>
+        <li><div class="fl-check" style="background:var(--blue-light);color:var(--blue);">✓</div>과잉생산·결품 동시 최소화</li>
+      </ul>
+    </div>
+    <div class="data-panel fade-up" style="transition-delay:0.2s;">
+      <div class="data-panel-label">SKU별 권장 생산량</div>
+      <div class="sku-row"><div><div class="sku-name">FW25-OT-001</div><div class="sku-sub">롱 코트 · 베이지</div></div><div class="sku-val" style="color:var(--blue);">1,240</div></div>
+      <div class="sku-row"><div><div class="sku-name">FW25-KN-014</div><div class="sku-sub">울 니트 · 차콜</div></div><div class="sku-val" style="color:var(--blue);">2,860</div></div>
+      <div class="sku-row"><div><div class="sku-name">FW25-PT-007</div><div class="sku-sub">슬랙스 · 블랙</div></div><div class="sku-val" style="color:var(--blue);">3,420</div></div>
+      <!-- 미니 바 차트 -->
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--gray-200);">
+        <div style="font-size:10px;color:var(--gray-400);margin-bottom:8px;">생산량 비교</div>
+        <div class="bar-row"><div class="bar-label" style="font-size:10px;">OT-001</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:var(--blue);"></div></div><div class="bar-num">1,240</div></div>
+        <div class="bar-row"><div class="bar-label" style="font-size:10px;">KN-014</div><div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--blue);"></div></div><div class="bar-num">2,860</div></div>
+        <div class="bar-row"><div class="bar-label" style="font-size:10px;">PT-007</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--blue);"></div></div><div class="bar-num">3,420</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 02 -->
+<section class="feature-section" id="section-02">
+  <div class="feature-inner reverse">
+    <div class="fade-up">
+      <div class="feature-badge" style="background:var(--green-light);color:#085041;">02 · 매장별 초도 배분</div>
+      <div class="feature-title">팔리는 곳에<br>먼저 보냅니다</div>
+      <div class="feature-desc">매장별 과거 판매 패턴, 상권 특성, 고객층을 분석해 신상품 초도 물량을 매장 단위로 최적 배분합니다.</div>
+      <ul class="feature-list">
+        <li><div class="fl-check" style="background:var(--green-light);color:var(--green);">✓</div>매장별 판매력·재고 회전율 기반</li>
+        <li><div class="fl-check" style="background:var(--green-light);color:var(--green);">✓</div>상권·고객층 특성 반영</li>
+        <li><div class="fl-check" style="background:var(--green-light);color:var(--green);">✓</div>매장 간 재고 불균형 사전 방지</li>
+      </ul>
+    </div>
+    <div class="data-panel fade-up" style="transition-delay:0.2s;">
+      <div class="data-panel-label">매장별 초도 물량 (FW25-KN-014)</div>
+      <div class="bar-row"><div class="bar-label">강남점</div><div class="bar-track"><div class="bar-fill" style="width:88%;"></div></div><div class="bar-num">320</div></div>
+      <div class="bar-row"><div class="bar-label">홍대점</div><div class="bar-track"><div class="bar-fill" style="width:65%;"></div></div><div class="bar-num">240</div></div>
+      <div class="bar-row"><div class="bar-label">판교점</div><div class="bar-track"><div class="bar-fill" style="width:51%;"></div></div><div class="bar-num">190</div></div>
+      <div class="bar-row"><div class="bar-label">부산점</div><div class="bar-track"><div class="bar-fill" style="width:38%;"></div></div><div class="bar-num">140</div></div>
+      <div class="bar-row"><div class="bar-label">대구점</div><div class="bar-track"><div class="bar-fill" style="width:28%;"></div></div><div class="bar-num">100</div></div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--gray-200);display:flex;justify-content:space-between;font-size:11px;">
+        <span style="color:var(--gray-400);">총 배분 수량</span>
+        <span style="font-weight:500;color:var(--green);">990개</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 03 -->
+<section class="feature-section" id="section-03">
+  <div class="feature-inner">
+    <div class="fade-up">
+      <div class="feature-badge" style="background:var(--purple-light);color:#3C3489;">03 · 리오더 제안</div>
+      <div class="feature-title">다품목을 동시에<br>한눈에 관리</div>
+      <div class="feature-desc">진행 중인 모든 SKU의 판매 속도를 동시 분석해, 리오더가 필요한 시점과 적정 수량을 자동 제안합니다.</div>
+      <ul class="feature-list">
+        <li><div class="fl-check" style="background:var(--purple-light);color:var(--purple);">✓</div>전 SKU 동시 모니터링</li>
+        <li><div class="fl-check" style="background:var(--purple-light);color:var(--purple);">✓</div>리드타임 고려한 발주 시점 산출</li>
+        <li><div class="fl-check" style="background:var(--purple-light);color:var(--purple);">✓</div>우선순위 자동 정렬</li>
+      </ul>
+    </div>
+    <div class="data-panel fade-up" style="transition-delay:0.2s;">
+      <div class="data-panel-label">리오더 우선순위</div>
+      <div class="reorder-row" style="border-color:var(--red);background:var(--red-light);">
+        <div><div class="reorder-name">FW25-KN-014</div><div class="reorder-status" style="color:#A32D2D;">긴급 · 5일 후 결품</div></div>
+        <div class="reorder-qty">+1,800</div>
+      </div>
+      <div class="reorder-row" style="border-color:var(--amber);background:var(--amber-light);">
+        <div><div class="reorder-name">FW25-OT-001</div><div class="reorder-status" style="color:#854F0B;">주의 · 14일 후 결품</div></div>
+        <div class="reorder-qty">+800</div>
+      </div>
+      <div class="reorder-row" style="border-color:#97C459;background:#EAF3DE;">
+        <div><div class="reorder-name">FW25-PT-007</div><div class="reorder-status" style="color:#3B6D11;">여유 · 28일 후 결품</div></div>
+        <div class="reorder-qty">+400</div>
+      </div>
+      <!-- 판매 속도 미니 차트 -->
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--gray-200);">
+        <div style="font-size:10px;color:var(--gray-400);margin-bottom:8px;">재고 소진 속도</div>
+        <svg viewBox="0 0 280 50" width="100%" height="50">
+          <line x1="0" y1="12" x2="280" y2="12" stroke="#E8E6E0" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <line x1="0" y1="30" x2="280" y2="30" stroke="#E8E6E0" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <polyline points="0,45 40,38 80,30 120,20 160,12 200,5" fill="none" stroke="#E24B4A" stroke-width="1.8" stroke-linecap="round"/>
+          <polyline points="0,45 50,40 100,34 150,26 200,20 250,14" fill="none" stroke="#EF9F27" stroke-width="1.8" stroke-linecap="round"/>
+          <polyline points="0,44 60,41 120,37 180,32 240,27" fill="none" stroke="#97C459" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--gray-600);"><div style="width:12px;height:2px;background:var(--red);border-radius:1px;"></div>KN-014</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--gray-600);"><div style="width:12px;height:2px;background:var(--amber);border-radius:1px;"></div>OT-001</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:var(--gray-600);"><div style="width:12px;height:2px;background:#97C459;border-radius:1px;"></div>PT-007</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<!-- 재고 이동 매출 증대 -->
+<section class="feature-section">
+  <div class="feature-inner">
+    <div class="fade-up">
+      <div class="feature-badge" style="background:#EEEDFE;color:#3C3489;">04 · 재고 이동 매출 증대</div>
+      <div class="feature-title">팔리는 곳으로<br>재고를 옮깁니다</div>
+      <div class="feature-desc">AI 판매 분석을 통해 매장별 재고 과부족을 파악하고, 최적 이동 경로를 제안해 원가회수율을 높입니다.</div>
+      <ul class="feature-list">
+        <li><div class="feature-list-check" style="background:#EEEDFE;color:#534AB7;">✓</div>매장별 판매 속도 실시간 비교 분석</li>
+        <li><div class="feature-list-check" style="background:#EEEDFE;color:#534AB7;">✓</div>과잉 재고 매장 → 결품 매장 이동 제안</li>
+        <li><div class="feature-list-check" style="background:#EEEDFE;color:#534AB7;">✓</div>원가회수율 평균 10% 증가</li>
+      </ul>
+    </div>
+    <div class="mockup-box fade-up" style="transition-delay:0.2s;">
+      <div class="mockup-label">재고 이동 제안</div>
+      <div class="mockup-card" style="border-left:3px solid #534AB7;padding:14px 16px;margin-bottom:10px;">
+        <div class="mockup-card-left"><div class="mockup-card-name" style="color:#534AB7;">강남점 → 홍대점</div><div class="mockup-card-sub">FW25-KN-014 · 블랙 M</div></div>
+        <div class="mockup-card-val" style="color:#534AB7;">80개</div>
+      </div>
+      <div class="mockup-card" style="border-left:3px solid #534AB7;padding:14px 16px;margin-bottom:0;">
+        <div class="mockup-card-left"><div class="mockup-card-name" style="color:#534AB7;">판교점 → 부산점</div><div class="mockup-card-sub">FW25-OT-001 · 베이지 L</div></div>
+        <div class="mockup-card-val" style="color:#534AB7;">45개</div>
+      </div>
+      <div style="background:#EEEDFE;border-radius:8px;padding:16px 18px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:12px;color:#3C3489;line-height:1.6;">이동 후 판매율 증가</div>
+        <div style="font-size:22px;font-weight:700;color:#534AB7;">+10%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI 코디 이미지 -->
+<section class="feature-section" style="background:var(--gray-50);border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);">
+  <div class="feature-inner reverse">
+    <div class="fade-up">
+      <div class="feature-badge" style="background:#FAECE7;color:#712B13;display:flex;align-items:center;gap:8px;">05 · AI 가상 모델 피팅</div>
+      <div class="feature-title">아이템별 AI<br>가상 모델 피팅</div>
+      <div class="feature-desc">저장된 상품 이미지를 AI 모델에 적용해 실착 이미지를 자동 생성합니다. 각 아이템을 코디한 스타일링 이미지도 함께 제공해 고객의 구매 결정을 돕습니다.</div>
+      <ul class="feature-list">
+        <li><div class="feature-list-check" style="background:#FAECE7;color:#993C1D;">✓</div>상품 이미지로 AI 가상 모델 착용 이미지 자동 생성</li>
+        <li><div class="feature-list-check" style="background:#FAECE7;color:#993C1D;">✓</div>아이템별 코디 스타일링 이미지 제공</li>
+        <li><div class="feature-list-check" style="background:#FAECE7;color:#993C1D;">✓</div>별도 촬영 없이 상품 이미지만으로 적용 가능</li>
+      </ul>
+    </div>
+    <div class="mockup-box fade-up" style="transition-delay:0.2s;">
+      <div class="mockup-label">AI 가상 모델 피팅</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div style="background:#fff;border-radius:8px;padding:12px;border:1px solid var(--gray-200);text-align:center;">
+          <div style="width:100%;height:80px;background:var(--gray-100);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="6" width="20" height="16" rx="2" stroke="#999690" stroke-width="1.5"/><circle cx="10" cy="12" r="2.5" stroke="#999690" stroke-width="1.5"/><path d="M4 20l5-5 4 4 3-3 6 5" stroke="#999690" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div style="font-size:10px;color:var(--gray-400);">상품 이미지</div>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:12px;border:1px solid #993C1D;text-align:center;position:relative;">
+          <div style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);background:#993C1D;color:#fff;font-size:9px;padding:2px 8px;border-radius:999px;white-space:nowrap;">AI 생성</div>
+          <div style="width:100%;height:80px;background:#FAECE7;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;">
+            <svg width="24" height="28" viewBox="0 0 24 28" fill="none"><ellipse cx="12" cy="7" rx="5" ry="5" stroke="#993C1D" stroke-width="1.5"/><path d="M2 26c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#993C1D" stroke-width="1.5" stroke-linecap="round"/><path d="M8 16l1 5h6l1-5" stroke="#993C1D" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div style="font-size:10px;color:#993C1D;font-weight:500;">AI 실착 이미지</div>
+        </div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:12px 14px;border:1px solid var(--gray-200);">
+        <div style="font-size:10px;color:var(--gray-400);margin-bottom:10px;">상의 + 하의 → 합성 실착 이미지</div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <!-- 상의 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:100%;height:44px;background:#F3F2EF;border-radius:6px;border:1px solid #E8E6E0;display:flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 4L2 8h4v10h10V8h4L18 4l-3 2H7L4 4z" stroke="#999690" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="font-size:9px;color:var(--gray-400);">상의</div>
+          </div>
+          <!-- + -->
+          <div style="font-size:14px;color:var(--gray-400);flex-shrink:0;">+</div>
+          <!-- 하의 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:100%;height:44px;background:#F3F2EF;border-radius:6px;border:1px solid #E8E6E0;display:flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 3h12v4l-3 12H8L5 7V3z" stroke="#999690" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div style="font-size:9px;color:var(--gray-400);">하의</div>
+          </div>
+          <!-- → -->
+          <div style="font-size:14px;color:var(--gray-400);flex-shrink:0;">→</div>
+          <!-- 합성 실착 -->
+          <div style="flex:1.2;display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="width:100%;height:44px;background:#FAECE7;border-radius:6px;border:1px solid #993C1D;display:flex;align-items:center;justify-content:center;position:relative;">
+              <svg width="20" height="24" viewBox="0 0 20 24" fill="none"><ellipse cx="10" cy="5" rx="4" ry="4" stroke="#993C1D" stroke-width="1.3"/><path d="M3 10c0-2 3-3 7-3s7 1 7 3v3l-2 9H5l-2-9v-3z" stroke="#993C1D" stroke-width="1.3" stroke-linecap="round"/></svg>
+            </div>
+            <div style="font-size:9px;color:#993C1D;font-weight:500;">AI 실착</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-title fade-up">우리 회사에도 적용해볼까요?</div>
+    <div class="cta-desc fade-up">현재 운영 중인 ERP 환경에 맞춰 도입 가능 여부를 무료로 검토해드립니다.</div>
+    <div class="cta-actions fade-up"><a href="contact.html" class="btn btn-primary" style="font-size:15px;padding:12px 28px;">데모 요청 →</a>
+        <a href="contact.html" class="btn btn-outline" style="font-size:15px;padding:12px 28px;">도입 상담</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;width:100%;flex-wrap:wrap;gap:16px;margin-bottom:12px;">
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div style="font-size:14px;font-weight:500;color:var(--gray-900);">ASO Korea</div>
+        <div style="font-size:12px;color:var(--gray-400);">경기도 하남시 하남대로 947 A1215b호</div>
+        <div style="font-size:12px;color:var(--gray-400);">대표전화 <a href="tel:07086708875" style="color:var(--gray-400);text-decoration:none;">070-8670-8875</a>&nbsp;·&nbsp;<a href="mailto:bong@asokorea.com" style="color:var(--gray-400);text-decoration:none;">bong@asokorea.com</a></div>
+      </div>
+      <div class="footer-links"><a href="about.html">회사소개</a><a href="privacy.html">개인정보처리방침</a><a href="remote.html">원격지원</a><a href="contact.html">도입문의</a></div>
+    </div>
+    <div class="footer-copy">© 2026 ASO Korea. All rights reserved.</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('hamburger').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden';});
+  document.getElementById('mobileClose').addEventListener('click',()=>{document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow='';});
+  const obs=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target);}});},{threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
